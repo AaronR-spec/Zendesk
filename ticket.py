@@ -1,4 +1,4 @@
-class Ticket(object):
+class Ticket():
 
     def __init__(self, ticket_id, created_date, updated_date, ticket_type, subject, priority, status):
         self.ticket_id = ticket_id
@@ -9,7 +9,8 @@ class Ticket(object):
         self.priority = priority
         self.status = status
 
-    def print(self):
+    def display(self):
         print(str(self.ticket_id) + ", " + self.created_date + ", " + self.updated_date + ", " + str(self.ticket_type) + ", "
               + self.subject + ", " + str(self.priority) + ", " + self.status)
+
 
