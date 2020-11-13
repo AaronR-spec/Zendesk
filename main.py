@@ -36,22 +36,39 @@ def create_tickets(data):
     return ticket_list
 
 
+def ticket_by_id(ticket_id, ticket_list):
+    start = 0
+    end = len(ticket_list) - 1
+
+    while start <= end:
+        mid = start + (end - start) // 2
+        current = ticket_list[mid]
+        if current.ticket_id == ticket_id:
+            return current
+        elif ticket_id < current.ticket_id:
+            end = mid - 1
+        else:
+            start = mid + 1
+    return None
+
+
 if __name__ == "__main__":
     tickets = get_tickets()
     amount_tickets = len(tickets)
     record_index = 0
+    ticket_by_id(7, tickets).display()
 
     # display it in pages
-    if amount_tickets > 25:
-        i = 0
-        while i < amount_tickets:
-            if record_index > 25:
-                user = input("Next page Y/N: ")
-                if user.lower() != 'y':
-                    break
-                record_index = 0
-            tickets[i].print()
-            record_index = record_index + 1
-            i = i + 1
+    # if amount_tickets > 25:
+    #     i = 0
+    #     while i < amount_tickets:
+    #         if record_index > 25:
+    #             user = input("Next page Y/N: ")
+    #             if user.lower() != 'y':
+    #                 break
+    #             record_index = 0
+    #         tickets[i].print()
+    #         record_index = record_index + 1
+    #         i = i + 1
 
 
