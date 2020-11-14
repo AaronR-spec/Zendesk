@@ -10,7 +10,7 @@ class Viewer:
     def get_ticket(self, ticket_id):
         start = 0
         end = len(self.tickets) - 1
-
+        # Binary search making it a O(logN) search instead of O(N), better for scalability
         while start <= end:
             mid = start + (end - start) // 2
             current = self.tickets[mid]
@@ -26,26 +26,27 @@ class Viewer:
         self.tickets.append(ticket)
 
     def display(self):
+        tickets_per_page = 24
         if len(self.tickets) <= 0:
             print("Nothing To Display")
             return
         amount_tickets = len(self.tickets)
         record_index = 0
         i = 0
-        if amount_tickets > 25:
+        if amount_tickets > tickets_per_page:
             i = 0
         while i < amount_tickets:
-            if record_index > 25:
+            if record_index > tickets_per_page:
                 user = input("Next page Y/N: ")
                 if user.lower() != 'y':
                     break
                 record_index = 0
             self.tickets[i].display()
-            record_index = record_index + 1
+            record_index += 1
             i += 1
 
     def __get_tickets(self):
-        url = 'https://aaronereihill.zendesk.com/api/v2/tickets.json'
+        url = 'https://aaronreihill.zendesk.com/api/v2/tickets.json'
         user = 'd00222467@student.dkit.ie'
         pwd = 'aaronreihillzendesk'
 
@@ -53,8 +54,12 @@ class Viewer:
         response = requests.get(url, auth=(user, pwd))
 
         # Check for HTTP codes other than 200
-        if response.status_code != 200:
-            print('Status:', response.status_code, 'Problem with the request ro the API.')
+        status_code = response.status_code
+        if status_code != 200:
+            if status_code == 404:
+                print('Status:', status_code, 'Problem with the request to the API.')
+            elif status_code == 401:
+                print("Couldn't authenticate you")
             return []
         # Decode the JSON response into a dictionary and use the data
         data = response.json()
