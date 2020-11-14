@@ -4,17 +4,17 @@ from viewer import Viewer
 def menu():
     print("\nZendesk Ticket Viewer")
     # user = input('Email: ')
-    # Tried using getpass() but ide console  isn't the same as getpass
+    # Tried using getpass() but ide console isn't the same as getpass
     # pwd = input('Password: ')
-    # password and username for testing  would use above code for realise
+    # password and username for testing would use above code for final realise
     user = 'd00222467@student.dkit.ie'
     pwd = 'aaronreihillzendesk'
     # Viewer is initialized
     ticket_viewer = Viewer(user, pwd)
     # string format for the header of the ticket prints
-    ticket_display_header = "{:<5} {:<10} {:<10} {:<10} {:<14} {:<14} {:<60}".format("Id", "Type", "Priority",
-                                                                                     "Status", "Updated",
-                                                                                     "Created", "Subject")
+    ticket_display_header = "\n{:<5} {:<10} {:<10} {:<10} {:<14} {:<14} {:<60}".format("Id", "Type", "Priority",
+                                                                                       "Status", "Updated",
+                                                                                       "Created", "Subject")
     while True:
         # menu options
         print("\n1.Display Tickets \n2.Display Ticket By Id \n3.Exit/Quit")

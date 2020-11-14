@@ -1,4 +1,3 @@
-
 class Ticket:
 
     def __init__(self, ticket_id, created_date, updated_date, ticket_type, subject, priority, status):

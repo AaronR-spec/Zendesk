@@ -7,36 +7,36 @@ class Viewer:
 
     def __init__(self, user, pwd):
         # holds list of Ticket objects and processes them
-        self.tickets = self.__get_tickets(user, pwd)
+        self._tickets = self.__get_tickets(user, pwd)
 
     def get_ticket(self, ticket_id):
+        if isinstance(ticket_id, str):
+            return False
         start = 0
-        end = len(self.tickets) - 1
+        end = len(self._tickets) - 1
         # Binary search making it a O(logN) search instead of O(N), better for scalability
         while start <= end:
             mid = start + (end - start) // 2
-            current = self.tickets[mid]
+            current = self._tickets[mid]
             if current.ticket_id == ticket_id:
                 # returns when found making it not have to continue after found
                 current.display()
-                return
+                return True
             elif ticket_id < current.ticket_id:
                 end = mid - 1
             else:
                 start = mid + 1
         print("Ticket Not Found")
-
-    def add(self, ticket):
-        self.tickets.append(ticket)
+        return False
 
     def display(self):
         # number of tickets displayed per page
         tickets_per_page = 24
         # nothing in list so it has nothing to display
-        if len(self.tickets) <= 0:
+        if len(self._tickets) <= 0:
             print("Nothing Here To Display..")
-            return
-        amount_tickets = len(self.tickets)
+            return False
+        amount_tickets = len(self._tickets)
         # index of current ticket index
         record_index = 0
         # index of records per page
@@ -53,10 +53,11 @@ class Viewer:
                     break
                 record_index = 0
             # displays ticket
-            self.tickets[i].display()
+            self._tickets[i].display()
             # increments index's
             record_index += 1
             i += 1
+        return True
 
     def __get_tickets(self, user, pwd):
         # API url subdomain
