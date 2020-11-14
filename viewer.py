@@ -15,7 +15,8 @@ class Viewer:
             mid = start + (end - start) // 2
             current = self.tickets[mid]
             if current.ticket_id == ticket_id:
-                return current
+                current.display()
+                return
             elif ticket_id < current.ticket_id:
                 end = mid - 1
             else:
