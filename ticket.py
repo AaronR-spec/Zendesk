@@ -11,6 +11,8 @@ class Ticket:
         self.status = str(status)
 
     def display(self):
+        # string format so table is neat and readable
+        # string 'none' is read in as a None (null) object so str() is needed for print
         print("{:<5} {:<10} {:<10} {:<10} {:<14} {:<14} {:<60}"
               .format(str(self.ticket_id), self.ticket_type, self.priority,
                       self.status, str(self.updated_date), str(self.created_date), self.subject))
