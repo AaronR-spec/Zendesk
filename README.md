@@ -12,5 +12,4 @@ Instructions:
     - Press 3 to exit the menu 
 
 Errors:
-  404 - Api is not responding, message is displayed
-  401 - Your credentials were incorrect, message is displayed 
+  404 - Api is not responding, message is displayed. 401 - Your credentials were incorrect, message is displayed 
