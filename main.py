@@ -7,8 +7,6 @@ def menu():
     # Tried using getpass() but ide console isn't the same as getpass
     # pwd = input('Password: ')
     # password and username for testing would use above code for final realise
-    user = 'd00222467@student.dkit.ie'
-    pwd = 'aaronreihillzendesk'
     # Viewer is initialized
     ticket_viewer = Viewer(user, pwd)
     # string format for the header of the ticket prints
